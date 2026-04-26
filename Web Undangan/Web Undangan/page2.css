@@ -1,0 +1,364 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111110;
+  --white: #f9f6f1;
+  --warm-gray: #8a7f74;
+  --mid-gray: #c2b8ae;
+  --light-cream: #ede8e1;
+  --gold: #b8a98a;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  animation: pageFade 0.6s ease both;
+}
+@keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* TOP NAV */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--light-cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-link {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--black);
+  text-decoration: none;
+  letter-spacing: 0.06em;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+.back-link:hover { opacity: 1; }
+.nav-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--black);
+}
+
+/* ===== SCHEDULE ===== */
+.schedule-section {
+  padding: 48px 28px 56px;
+  position: relative;
+  background: var(--white);
+}
+.ring-ornament {
+  position: absolute;
+  font-size: 1.3rem;
+  color: var(--mid-gray);
+  opacity: 0.6;
+}
+.ring-ornament.top-left { top: 22px; left: 20px; }
+.ring-ornament.top-right { top: 22px; right: 20px; }
+
+.section-heading {
+  font-family: var(--font-heading);
+  font-size: 0.78rem;
+  letter-spacing: 0.28em;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 36px;
+  color: var(--black);
+}
+
+.schedule-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  transition: background 0.2s;
+}
+.schedule-item:last-child { border-bottom: none; }
+.schedule-item:hover { background: rgba(0,0,0,0.02); }
+
+.time {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 300;
+  min-width: 90px;
+  letter-spacing: 0.04em;
+}
+.vline {
+  width: 1px;
+  height: 22px;
+  background: var(--black);
+  margin: 0 18px;
+  flex-shrink: 0;
+}
+.event {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  color: var(--black);
+  font-weight: 400;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  letter-spacing: 0.02em;
+}
+
+/* ===== DRESS CODE ===== */
+.dresscode-section {
+  padding: 0 0 48px;
+  background: var(--white);
+  text-align: center;
+}
+.dresscode-section .section-heading { padding: 0 28px; margin-bottom: 24px; }
+.dresscode-photo { width: 100%; overflow: hidden; }
+.dc-img-wrap {
+  position: relative;
+  height: 220px;
+  background: #1a1a1a;
+  overflow: hidden;
+}
+.dc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+}
+
+/* Cathedral window decorative art */
+.window-silhouette {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.arch {
+  width: 120px;
+  height: 160px;
+  border: 2px solid rgba(255,255,255,0.15);
+  border-radius: 60px 60px 0 0;
+  position: absolute;
+}
+.couple-dance {
+  position: absolute;
+  bottom: 20px;
+  width: 60px;
+  height: 90px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 30px 30px 0 0;
+}
+
+.dresscode-text {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  line-height: 1.9;
+  color: #555;
+  font-weight: 300;
+  padding: 28px 28px 0;
+}
+.color-swatches {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin-top: 22px;
+  padding: 0 28px;
+}
+.swatch {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: transform 0.2s;
+}
+.swatch:hover { transform: scale(1.12); }
+
+/* ===== MESSAGE SECTION ===== */
+.message-section {
+  background: var(--white);
+  padding: 0 0 60px;
+}
+.message-section .section-heading {
+  padding: 48px 28px 0;
+  margin-bottom: 0;
+}
+
+.message-bg-wrap {
+  position: relative;
+  height: 420px;
+  overflow: hidden;
+  margin-top: 24px;
+}
+.cathedral-bg {
+  position: absolute; inset: 0;
+  background: #0e0e0e;
+  overflow: hidden;
+}
+.arch-tall {
+  position: absolute;
+  bottom: 0;
+  border-radius: 999px 999px 0 0;
+  border: 1.5px solid rgba(255,255,255,0.1);
+}
+.left-arch { left: 12%; width: 80px; height: 200px; }
+.center-arch { left: 50%; transform: translateX(-50%); width: 140px; height: 320px; border-color: rgba(255,255,255,0.2); }
+.right-arch { right: 12%; width: 80px; height: 200px; }
+
+.light-rays {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent);
+  box-shadow: -40px 0 60px 20px rgba(255,255,255,0.06), 40px 0 60px 20px rgba(255,255,255,0.06);
+}
+
+.couple-silhouette {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 120px;
+  background: rgba(0,0,0,0.6);
+  border-radius: 40px 40px 0 0;
+}
+
+.msg-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%);
+  pointer-events: none;
+}
+
+.message-form-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  gap: 12px;
+  z-index: 10;
+}
+
+.msg-input, .msg-textarea {
+  width: 100%;
+  background: rgba(255,255,255,0.88);
+  border: none;
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+  padding: 12px 16px;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--black);
+  outline: none;
+  backdrop-filter: blur(4px);
+  transition: border-color 0.25s, background 0.25s;
+  border-radius: 2px;
+}
+.msg-input:focus, .msg-textarea:focus {
+  background: rgba(255,255,255,0.96);
+  border-color: var(--black);
+}
+.msg-textarea { resize: none; min-height: 80px; }
+
+.msg-input::placeholder, .msg-textarea::placeholder {
+  color: #999; font-weight: 300;
+}
+
+.btn-send {
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  padding: 13px 44px;
+  border: none;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.25s, transform 0.15s;
+}
+.btn-send:hover { background: #333; }
+.btn-send:active { transform: scale(0.97); }
+
+/* MESSAGES DISPLAY */
+.messages-display { padding: 0 20px; margin-top: 8px; }
+.messages-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 20px 0 12px;
+  border-bottom: 1px solid var(--light-cream);
+  margin-bottom: 12px;
+}
+.messages-title {
+  font-family: var(--font-heading);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--warm-gray);
+}
+.msg-card {
+  background: var(--white);
+  border: 1px solid var(--light-cream);
+  border-left: 3px solid var(--black);
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  animation: slideUp 0.4s ease both;
+}
+@keyframes slideUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+
+.msg-sender {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+.msg-text {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: #555;
+  line-height: 1.7;
+  font-weight: 300;
+  margin-bottom: 6px;
+}
+.section-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%);
+  display: block;
+}
+
+.msg-time {
+  font-size: 0.68rem;
+  color: var(--mid-gray);
+  font-family: var(--font-body);
+}
+
+/* SHAKE ANIMATION */
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20% { transform: translateX(-6px); }
+  40% { transform: translateX(6px); }
+  60% { transform: translateX(-4px); }
+  80% { transform: translateX(4px); }
+}
+.shake { animation: shake 0.45s ease both !important; }

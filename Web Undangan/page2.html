@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+  <title>Wedding Schedule – Kaelv & Kayza</title>
+  <link rel="stylesheet" href="page2.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- BACK NAV -->
+  <nav class="top-nav">
+    <a href="page1.html" class="back-link">← Back</a>
+    <span class="nav-title">Kaelv &amp; Kayza</span>
+  </nav>
+
+  <!-- WEDDING SCHEDULE -->
+  <section class="schedule-section">
+    <div class="ring-ornament top-left">⌾</div>
+    <h2 class="section-heading">WEDDING SCHEDULE</h2>
+    <div class="ring-ornament top-right">⌾</div>
+
+    <div class="schedule-list">
+      <div class="schedule-item">
+        <span class="time">04.00 PM</span>
+        <div class="vline"></div>
+        <span class="event">Guests Arrive</span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">04.30 PM</span>
+        <div class="vline"></div>
+        <span class="event">Wedding Ceremony</span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">05.30 PM</span>
+        <div class="vline"></div>
+        <span class="event">Family Photo Session</span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">06.00 PM</span>
+        <div class="vline"></div>
+        <span class="event">Reception Begins</span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">07.00 PM</span>
+        <div class="vline"></div>
+        <span class="event">Lunch &amp; Mingling</span>
+      </div>
+      <div class="schedule-item">
+        <span class="time">09.00 PM</span>
+        <div class="vline"></div>
+        <span class="event">Closing</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="dresscode-section">
+    <h2 class="section-heading">DRESS CODE</h2>
+    <div class="dresscode-photo">
+      <div class="dc-img-wrap">
+        <img src="Relive All Those Ballerina Dreams With This Inspired Wedding Shoot.jpeg" alt="Dress Code" class="section-img" />
+        <div class="dc-overlay"></div>
+      </div>
+    </div>
+    <p class="dresscode-text">
+      We kindly hope you can wear outfits in the<br />
+      colors we have chosen for our wedding day.
+    </p>
+    <div class="color-swatches">
+      <div class="swatch" style="background:#111110;"></div>
+      <div class="swatch" style="background:#7a6f63;"></div>
+      <div class="swatch" style="background:#b8a98a;"></div>
+      <div class="swatch" style="background:#ede8e1; border: 1px solid #ccc;"></div>
+    </div>
+    <p class="dresscode-text" style="margin-top: 24px;">
+      We would love for you to dress comfortably<br />
+      yet stylishly according to the theme below.
+    </p>
+  </section>
+
+  <!-- SEND A MESSAGE -->
+  <section class="message-section">
+    <h2 class="section-heading">SEND A SHORT MESSAGE</h2>
+
+    <div class="message-bg-wrap">
+      <!-- Cathedral background art -->
+      <div class="cathedral-bg">
+        <img src="nikah.png" alt="Church" class="section-img" />
+      </div>
+      <div class="msg-overlay"></div>
+
+      <!-- FORM OVERLAY -->
+      <div class="message-form-wrap">
+        <input
+          type="text"
+          id="nameInput"
+          class="msg-input"
+          placeholder="Name..."
+          maxlength="60"
+          autocomplete="off"
+        />
+        <textarea
+          id="msgInput"
+          class="msg-textarea"
+          placeholder="Message..."
+          rows="4"
+          maxlength="300"
+        ></textarea>
+        <button class="btn-send" id="sendBtn" onclick="handleSend()">Send</button>
+      </div>
+    </div>
+
+    <!-- Messages display area -->
+    <div class="messages-display" id="messagesDisplay">
+      <div class="messages-header" id="msgHeader" style="display:none;">
+        <span class="messages-title">💌 Messages from Guests</span>
+      </div>
+      <div id="messagesList"></div>
+    </div>
+  </section>
+
+  <script>
+    const messages = JSON.parse(sessionStorage.getItem('weddingMessages') || '[]');
+
+    function renderMessages() {
+      const list = document.getElementById('messagesList');
+      const header = document.getElementById('msgHeader');
+      if (messages.length === 0) { header.style.display = 'none'; list.innerHTML = ''; return; }
+      header.style.display = 'flex';
+      list.innerHTML = messages.map((m, i) => `
+        <div class="msg-card" style="animation-delay:${i * 0.08}s">
+          <span class="msg-sender">${escapeHtml(m.name)}</span>
+          <p class="msg-text">${escapeHtml(m.text)}</p>
+          <span class="msg-time">${m.time}</span>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    }
+
+    function handleSend() {
+      const name = document.getElementById('nameInput').value.trim();
+      const msg = document.getElementById('msgInput').value.trim();
+      if (!name || !msg) {
+        shake(document.getElementById('sendBtn'));
+        if (!name) shake(document.getElementById('nameInput'));
+        if (!msg) shake(document.getElementById('msgInput'));
+        return;
+      }
+      const now = new Date();
+      const time = now.toLocaleTimeString('id-ID', { hour:'2-digit', minute:'2-digit' });
+      messages.push({ name, text: msg, time });
+      sessionStorage.setItem('weddingMessages', JSON.stringify(messages));
+      document.getElementById('nameInput').value = '';
+      document.getElementById('msgInput').value = '';
+      renderMessages();
+      // Redirect to gallery page after short delay
+      setTimeout(() => { window.location.href = 'page3.html'; }, 900);
+    }
+
+    function shake(el) {
+      el.classList.remove('shake');
+      void el.offsetWidth;
+      el.classList.add('shake');
+      setTimeout(() => el.classList.remove('shake'), 500);
+    }
+
+    renderMessages();
+  </script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+/* ===== RESET & BASE ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --black: #111110;
+  --white: #f9f6f1;
+  --warm-gray: #8a7f74;
+  --mid-gray: #c2b8ae;
+  --light-cream: #ede8e1;
+  --gold: #b8a98a;
+  --dark-bg: #181816;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-heading: 'Cinzel', serif;
+  --font-body: 'Lato', sans-serif;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--black);
+  max-width: 430px;
+  margin: 0 auto;
+  overflow-x: hidden;
+  animation: pageFade 0.7s ease both;
+}
+@keyframes pageFade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* TOP NAV */
+.top-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: var(--white);
+  border-bottom: 1px solid var(--light-cream);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.back-link, .home-link {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--black);
+  text-decoration: none;
+  opacity: 0.65;
+  letter-spacing: 0.05em;
+  transition: opacity 0.2s;
+}
+.back-link:hover, .home-link:hover { opacity: 1; }
+.nav-title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--black);
+}
+
+/* GALLERY HEADER */
+.gallery-header {
+  text-align: center;
+  padding: 48px 28px 28px;
+}
+.ornament {
+  font-size: 1.4rem;
+  color: var(--mid-gray);
+  margin-bottom: 10px;
+  display: block;
+}
+.gallery-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 300;
+  color: var(--black);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.gallery-subtitle {
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  color: var(--warm-gray);
+  letter-spacing: 0.14em;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.thin-line {
+  width: 40px; height: 1px;
+  background: var(--black);
+  margin: 0 auto;
+}
+
+/* THANK YOU */
+.thankyou-section {
+  padding: 20px 28px 32px;
+  text-align: center;
+}
+.thankyou-text {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--warm-gray);
+  line-height: 1.8;
+}
+
+/* ===== GALLERY MOSAIC ===== */
+.gallery-section { padding: 0 0 0; }
+.gallery-mosaic { display: flex; flex-direction: column; gap: 3px; }
+.g-row-2 { display: flex; gap: 3px; }
+
+.g-cell { overflow: hidden; position: relative; }
+.g-cell.full { width: 100%; }
+.g-cell.half { flex: 1; }
+
+/* Each gallery art piece */
+.gallery-art {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.dark-scene { background: #181816; }
+.light-scene { background: #e8e2da; }
+
+/* ART CAPTION */
+.art-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.72rem;
+  color: rgba(0,0,0,0.55);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+.art-caption.light-cap { color: rgba(255,255,255,0.7); }
+
+/* ============ CELL HEIGHTS ============ */
+.cathedral-cell { height: 260px; }
+.ring-cell, .veil-cell { height: 180px; }
+.hug-cell, .groom-wait-cell { height: 170px; }
+.couple-cry-cell { height: 200px; }
+.hands-cell, .embrace2-cell { height: 160px; }
+.ring-close-cell, .ballroom-cell { height: 160px; }
+
+/* ============ CHURCH SCENE ============ */
+.church-scene { background: #0a0a0a; }
+.church-window {
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 120px; height: 200px;
+}
+.window-arch {
+  position: absolute;
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: 999px 999px 0 0;
+}
+.main-arch { left: 50%; transform: translateX(-50%); width: 80px; height: 160px; bottom: 0; }
+.side-arch { width: 40px; height: 100px; bottom: 0; }
+.side-arch.left-s { left: 0; }
+.side-arch.right-s { right: 0; }
+
+.church-light-beam {
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 200px;
+  background: radial-gradient(ellipse at top, rgba(255,255,255,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.church-couple {
+  position: absolute;
+  bottom: 30px; left: 50%;
+  transform: translateX(-50%);
+  display: flex; gap: 2px;
+  align-items: flex-end;
+}
+.church-bride {
+  width: 22px; height: 55px;
+  background: rgba(255,255,255,0.75);
+  border-radius: 11px 11px 0 0;
+}
+.church-groom {
+  width: 18px; height: 50px;
+  background: rgba(80,80,80,0.9);
+  border-radius: 9px 9px 0 0;
+}
+.church-pews {
+  position: absolute;
+  bottom: 28px;
+  width: 55px; height: 16px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 2px;
+}
+.left-pew { left: 15%; }
+.right-pew { right: 15%; }
+
+/* ============ RINGS SCENE ============ */
+.rings-scene { background: #1e1a15; }
+.ring-drawing {
+  position: absolute;
+  border: 2px solid rgba(255,255,255,0.6);
+  border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ring-drawing.outer { width: 55px; height: 55px; transform: translate(-60%, -50%); }
+.ring-drawing.inner { width: 45px; height: 45px; transform: translate(-30%, -50%); border-color: rgba(255,255,255,0.4); }
+.hand-outline {
+  position: absolute;
+  background: rgba(200,185,165,0.3);
+  border-radius: 20px 20px 4px 4px;
+}
+.left-hand { width: 30px; height: 55px; bottom: 20px; left: 20%; }
+.right-hand { width: 30px; height: 55px; bottom: 20px; right: 20%; }
+
+/* ============ VEIL SCENE ============ */
+.veil-scene { background: #111; }
+.bride-veil-figure {
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: flex-end;
+  height: 100%; padding-bottom: 10px;
+}
+.bride-head {
+  width: 24px; height: 24px;
+  background: rgba(220,200,180,0.7);
+  border-radius: 50%;
+  margin-bottom: 0;
+}
+.veil-drape {
+  width: 80px; height: 100px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.18), rgba(255,255,255,0.04));
+  border-radius: 40px 40px 60px 60px;
+  margin-top: -12px;
+}
+.bride-gown {
+  width: 48px; height: 60px;
+  background: rgba(220,210,195,0.35);
+  border-radius: 4px 4px 20px 20px;
+  margin-top: -10px;
+}
+
+/* ============ HUG SCENE ============ */
+.hug-scene { background: #d8d0c8; }
+.hug-figure {
+  display: flex; align-items: center; gap: -10px;
+}
+.hug-left, .hug-right {
+  width: 45px; height: 70px;
+  border-radius: 22px 22px 10px 10px;
+  background: rgba(0,0,0,0.18);
+}
+.hug-left { transform: rotate(-8deg) translateX(8px); }
+.hug-right { transform: rotate(8deg) translateX(-8px); background: rgba(255,255,255,0.5); }
+
+/* ============ GROOM WAIT SCENE ============ */
+.groom-wait-scene { background: #c8c0b8; }
+.groom-figure-stand {
+  display: flex; flex-direction: column;
+  align-items: center; padding-bottom: 8px;
+}
+.groom-head {
+  width: 26px; height: 26px;
+  background: #2a2320;
+  border-radius: 50%;
+  margin-bottom: 6px;
+}
+.groom-hand-chin {
+  width: 14px; height: 8px;
+  background: rgba(200,180,160,0.7);
+  border-radius: 4px;
+  margin-bottom: 4px;
+  margin-top: -6px;
+  transform: rotate(-15deg);
+}
+.groom-suit {
+  width: 38px; height: 75px;
+  background: #1a1815;
+  border-radius: 6px 6px 4px 4px;
+}
+
+/* ============ CRY SCENE ============ */
+.cry-scene { background: #e5ddd4; }
+.couple-stand {
+  display: flex; gap: 18px; align-items: flex-end;
+}
+.s-groom, .s-bride {
+  display: flex; flex-direction: column; align-items: center;
+}
+.s-head {
+  width: 24px; height: 24px;
+  background: rgba(200,180,160,0.8);
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+.dark-head { background: #2a2320; }
+.praying-hands {
+  width: 20px; height: 12px;
+  background: rgba(200,180,160,0.6);
+  border-radius: 50%;
+  margin-bottom: 2px;
+}
+.s-body { width: 36px; height: 80px; border-radius: 6px 6px 4px 4px; }
+.dark-suit { background: #1a1815; }
+.wedding-dress { background: rgba(255,255,255,0.85); border-radius: 6px 6px 20px 20px; width: 44px; }
+.bouquet {
+  width: 28px; height: 28px;
+  background: radial-gradient(circle, #fff 40%, rgba(220,220,220,0.5) 100%);
+  border-radius: 50%;
+  margin-top: -10px;
+}
+
+/* ============ HANDS / VOWS ============ */
+.hands-scene { background: #d0c8c0; }
+.hands-together {
+  display: flex; flex-direction: column; align-items: center; gap: 4px;
+}
+.hand-a, .hand-b {
+  width: 60px; height: 28px;
+  border-radius: 14px;
+  background: rgba(180,160,140,0.7);
+}
+.hand-a { transform: rotate(-10deg) translateY(5px); }
+.hand-b { transform: rotate(10deg) translateY(-5px); background: rgba(140,120,100,0.6); }
+
+/* ============ EMBRACE 2 ============ */
+.embrace2-scene { background: #1a1815; }
+.neck-embrace { position: relative; width: 60px; height: 80px; }
+.neck {
+  position: absolute;
+  top: 10px; left: 50%;
+  transform: translateX(-50%);
+  width: 26px; height: 50px;
+  background: rgba(200,180,160,0.35);
+  border-radius: 13px;
+}
+.embracing-hands {
+  position: absolute;
+  top: 30px;
+  width: 100%;
+  height: 30px;
+  background: rgba(200,180,160,0.2);
+  border-radius: 50%;
+}
+
+/* ============ RING CLOSE ============ */
+.ring-close-scene { background: #1a1a18; }
+.close-ring {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 6px;
+}
+.finger-a, .finger-b {
+  width: 18px; height: 50px;
+  border-radius: 9px;
+  background: rgba(200,180,160,0.4);
+}
+.tiny-ring {
+  width: 22px; height: 22px;
+  border: 2px solid rgba(255,255,255,0.7);
+  border-radius: 50%;
+}
+.finger-a { transform: rotate(15deg); }
+.finger-b { transform: rotate(-15deg); }
+
+/* ============ BALLROOM ============ */
+.ballroom-scene { background: #f0ece6; }
+.ballroom-window {
+  position: absolute; top: 10px; left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+.bw-arch {
+  width: 70px; height: 100px;
+  border: 1.5px solid rgba(0,0,0,0.12);
+  border-radius: 35px 35px 0 0;
+  margin: 0 auto;
+}
+.bw-chandelier {
+  font-size: 0.7rem; color: rgba(0,0,0,0.25);
+  text-align: center;
+  margin-top: 6px;
+}
+.ballroom-couple-sil {
+  position: absolute;
+  bottom: 18px; left: 50%;
+  transform: translateX(-50%);
+  width: 40px; height: 55px;
+  background: rgba(0,0,0,0.2);
+  border-radius: 20px 20px 5px 5px;
+}
+
+/* ===== CLOSING SECTION ===== */
+.closing-section {
+  text-align: center;
+  padding: 56px 28px 64px;
+  background: var(--white);
+}
+.quote-wrap {
+  position: relative;
+  padding: 0 20px;
+  margin-bottom: 32px;
+}
+.quote-mark {
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--mid-gray);
+  line-height: 0.6;
+  display: block;
+}
+.closing-q { text-align: right; }
+.closing-quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--black);
+  font-weight: 300;
+}
+.closing-names {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.6rem;
+  color: var(--black);
+  margin-bottom: 4px;
+}
+.closing-date {
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  color: var(--warm-gray);
+  margin-bottom: 16px;
+}
+.closing-ornament {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  color: var(--mid-gray);
+  margin-bottom: 36px;
+}
+
+.g-cell {
+  position: relative; /* pastikan sudah ada */
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: grayscale(100%);
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery-img:hover {
+  transform: scale(1.04);
+}
+
+.g-cell .art-caption {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.85);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.6);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.btn-home {
+  display: inline-block;
+  background: var(--black);
+  color: var(--white);
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-decoration: none;
+  padding: 15px 36px;
+  transition: background 0.25s, transform 0.15s;
+}
+.btn-home:hover { background: #333; transform: translateY(-1px); }
